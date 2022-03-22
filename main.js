@@ -149,6 +149,7 @@ function singleD6Roll() {
   sixes.push(sixt);
   d6Mean.textContent = getAverage(sixes);
   d6Median.textContent = getMedian(sixes);
+  d6Mode.textContent = getMode(sixes);
   return sixes;
 }
 // Double D6 Roll Function
@@ -163,6 +164,7 @@ function doubleD6Roll() {
   doubleSixes.push(sixt + sixt2);
   doubleD6Mean.textContent = getAverage(doubleSixes);
   doubleD6Median.textContent = getMedian(doubleSixes);
+  doubleD6Mode.textContent = getMode(doubleSixes);
   return doubleSixes;
 }
 // D12 Roll Function
@@ -173,6 +175,7 @@ function d12Roll() {
   twelves.push(twelth);
   d12Mean.textContent = getAverage(twelves);
   d12Median.textContent = getMedian(twelves);
+  d12Mode.textContent = getMode(twelves);
   return twelves;
 }
 // D20 Roll Function
@@ -183,6 +186,7 @@ function d20Roll() {
   twenties.push(twentieth);
   d20Mean.textContent = getAverage(twenties);
   d20Median.textContent = getMedian(twenties);
+  d20Mode.textContent = getMode(twenties);
   return twenties;
 }
 
@@ -190,7 +194,8 @@ function d20Roll() {
 /****************
  * MATH SECTION *
  ****************/
-// Mean function DONE
+
+ // Mean function DONE
 function getAverage(array) {
   let sum = 0;
   let avg = 0;
@@ -208,6 +213,18 @@ function getMedian(array) {
   return sortArray[halfIndex];
 }
 
+// Mode function DONE
 function getMode(array) {
-  return Math.mode(array);
+  let counts = {};
+  let greatFrequency = 0;
+  let mode = 0
+  array.forEach(function findeMode(nums) {
+      counts[nums] = (counts[nums] || 0) + 1;
+
+      if (greatFrequency < counts[nums]) {
+          greatFrequency = counts[nums];
+          mode = nums;
+      }
+  })
+  return mode;
 }
